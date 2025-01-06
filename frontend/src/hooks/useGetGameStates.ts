@@ -51,7 +51,7 @@ export default function useGetGameStates({ gameIds }: Props) {
                 player2: game.result.player2,
                 playerWhite: game.result.playerWhite,
                 playerBlack: game.result.playerBlack,
-                lastMoveTimestamp: game.result.lastMoveTimestamp,
+                lastMoveTimestamp: game.result.lastMoveTimestamp * BigInt(1000),
                 whiteOfferedDraw: game.result.whiteOfferedDraw,
                 blackOfferedDraw: game.result.blackOfferedDraw,
                 blackResigned: game.result.blackResigned,
