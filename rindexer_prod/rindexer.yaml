@@ -27,6 +27,14 @@ storage:
                     - player
                 - event_input_names:
                     - rating
+            - name: MoveMadeEvent
+              indexes:
+                - event_input_names:
+                  - gameId
+                - event_input_names:
+                  - isWhitePlayersTurn
+                - event_input_names:
+                  - move
 
 contracts:
   - name: LensChess
