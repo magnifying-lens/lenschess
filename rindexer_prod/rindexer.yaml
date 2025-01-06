@@ -32,9 +32,10 @@ contracts:
   - name: LensChess
     details:
       - network: lensTestnet
-        address: 0xb85607F000D5Db94D8263a2Fc356676ed3213D05
+        address: 0x778F8CCC32A38129AF03336759BE58bb1BF9E857
         start_block: 130157
     abi: ./abis/lenschess.abi.json
     include_events:
       - GameEvent
       - EloRatingEvent
+      - MoveMadeEvent

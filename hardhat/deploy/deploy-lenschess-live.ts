@@ -24,29 +24,40 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet1);
 
-  const chessArtifact = await deployer.loadArtifact("Chess");
+  // uncomment for first deployment
+  // const chessArtifact = await deployer.loadArtifact("Chess");
 
-  const chessContract = await deployer.deploy(chessArtifact);
+  // const chessContract = await deployer.deploy(chessArtifact);
 
-  // Show the contract info.
-  console.log(
-    `${
-      chessArtifact.contractName
-    } was deployed to ${await chessContract.getAddress()}`
+  // // Show the contract info.
+  // console.log(
+  //   `${
+  //     chessArtifact.contractName
+  //   } was deployed to ${await chessContract.getAddress()}`
+  // );
+
+  // const chessAddress = await chessContract.getAddress();
+
+  const lensChessArtifact = await deployer.loadArtifact("LensChess");
+
+  // comment for first deployment
+  const chessAddress = "0x16C7319BCE5D188e971d09cd99384AA3c215a913";
+
+  const lensChess = await hre.zkUpgrades.deployProxy(
+    wallet1,
+    lensChessArtifact,
+    [chessAddress],
+    { initializer: "initialize" }
   );
 
-  const lensChessArtifat = await deployer.loadArtifact("LensChess");
+  // const lensChess = await deployer.deploy(lensChessArtifact, []);
 
-  const chessAddress = await chessContract.getAddress();
-
-  const lensChess = await deployer.deploy(lensChessArtifat, []);
-
-  await lensChess.initialize(chessAddress);
+  // await lensChess.initialize(chessAddress);
 
   // Show the contract info.
   console.log(
     `${
-      lensChessArtifat.contractName
+      lensChessArtifact.contractName
     } was deployed to ${await lensChess.getAddress()}`
   );
 }

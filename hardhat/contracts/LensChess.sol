@@ -153,6 +153,12 @@ contract LensChess is Initializable {
         address player2
     );
 
+    event MoveMadeEvent(
+        uint256 indexed gameId,
+        bool isWhitePlayersTurn,
+        uint16 move
+    );
+
     event EloRatingEvent(address indexed player, int256 indexed rating);
 
     function adjustEloRatings(
@@ -572,6 +578,7 @@ contract LensChess is Initializable {
             // Switch turns
             game.isWhitePlayersTurn = !game.isWhitePlayersTurn;
         }
+        emit MoveMadeEvent(gameId, !game.isWhitePlayersTurn, move);
     }
 
     function betWhite(uint256 gameId) external payable {

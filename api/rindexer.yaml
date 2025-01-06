@@ -33,9 +33,10 @@ contracts:
   - name: LensChess
     details:
       - network: anvil
-        address: 0x6B828bcb33305478cd7d27eB323F5C5B7b4aFdbe
+        address: 0xC7B060B7D883DBd86AEc6C2AA71e02Ec6Aaf82CE
         start_block: 0
     abi: ./abis/lenschess.abi.json
     include_events:
       - GameEvent
       - EloRatingEvent
+      - MoveMadeEvent

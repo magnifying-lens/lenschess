@@ -39,9 +39,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
   const chessAddress = await chessContract.getAddress();
 
-  const lensChess = await deployer.deploy(lensChessArtifat, []);
+  const lensChess = await hre.zkUpgrades.deployProxy(
+    wallet1,
+    lensChessArtifat,
+    [chessAddress],
+    { initializer: "initialize" }
+  );
 
-  await lensChess.initialize(chessAddress);
+  // const lensChess = await deployer.deploy(lensChessArtifat, []);
+
+  // await lensChess.initialize(chessAddress);
 
   // Show the contract info.
   console.log(
