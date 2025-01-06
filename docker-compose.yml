@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: rindexer
 
   frontend:
-    image: frontend:0.0.4
+    image: frontend:0.0.5
     restart: always
     ports:
       - 8000:80
