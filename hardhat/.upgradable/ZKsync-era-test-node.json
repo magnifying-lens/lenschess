@@ -1,0 +1,172 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0xC7B060B7D883DBd86AEc6C2AA71e02Ec6Aaf82CE",
+      "txHash": "0x2a082bbea45e5182716f1ccfdf3ee00d6428faff1e62b152f2856501b199698f",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "e00edf460cfd6505bf442049b332007f5fc94ce005a7be1180ec9aafeffaa4a5": {
+      "address": "0x6B828bcb33305478cd7d27eB323F5C5B7b4aFdbe",
+      "txHash": "0x7d9f040a24ed3f0e35ed825955805415ffcb50a3110596071c734b6b2a6bb9eb",
+      "layout": {
+        "solcVersion": "0.8.24",
+        "storage": [
+          {
+            "contract": "Initializable",
+            "label": "_initialized",
+            "type": "t_uint8",
+            "src": "@openzeppelin/contracts/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "contract": "Initializable",
+            "label": "_initializing",
+            "type": "t_bool",
+            "src": "@openzeppelin/contracts/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "contract": "LensChess",
+            "label": "chess",
+            "type": "t_contract(Chess)5651",
+            "src": "contracts/LensChess.sol:9"
+          },
+          {
+            "contract": "LensChess",
+            "label": "games",
+            "type": "t_array(t_struct(Game)5741_storage)dyn_storage",
+            "src": "contracts/LensChess.sol:75"
+          }
+        ],
+        "types": {
+          "t_contract(Chess)5651": {
+            "label": "contract Chess"
+          },
+          "t_array(t_struct(Game)5741_storage)dyn_storage": {
+            "label": "struct LensChess.Game[]"
+          },
+          "t_struct(Game)5741_storage": {
+            "label": "struct LensChess.Game",
+            "members": [
+              {
+                "label": "state",
+                "type": "t_enum(GameState)5666"
+              },
+              {
+                "label": "isWhitePlayersTurn",
+                "type": "t_bool"
+              },
+              {
+                "label": "outcome",
+                "type": "t_enum(Outcome)5671"
+              },
+              {
+                "label": "gameState",
+                "type": "t_uint256"
+              },
+              {
+                "label": "whiteState",
+                "type": "t_uint32"
+              },
+              {
+                "label": "blackState",
+                "type": "t_uint32"
+              },
+              {
+                "label": "playerWhite",
+                "type": "t_address"
+              },
+              {
+                "label": "playerBlack",
+                "type": "t_address"
+              },
+              {
+                "label": "player1",
+                "type": "t_address"
+              },
+              {
+                "label": "player2",
+                "type": "t_address"
+              },
+              {
+                "label": "lastMoveTimestamp",
+                "type": "t_uint256"
+              },
+              {
+                "label": "whiteOfferedDraw",
+                "type": "t_bool"
+              },
+              {
+                "label": "blackOfferedDraw",
+                "type": "t_bool"
+              },
+              {
+                "label": "whiteBets",
+                "type": "t_mapping(t_address,t_uint256)"
+              },
+              {
+                "label": "blackBets",
+                "type": "t_mapping(t_address,t_uint256)"
+              },
+              {
+                "label": "drawBets",
+                "type": "t_mapping(t_address,t_uint256)"
+              },
+              {
+                "label": "totalWhiteBets",
+                "type": "t_uint256"
+              },
+              {
+                "label": "totalBlackBets",
+                "type": "t_uint256"
+              },
+              {
+                "label": "totalDrawBets",
+                "type": "t_uint256"
+              }
+            ]
+          },
+          "t_enum(GameState)5666": {
+            "label": "enum LensChess.GameState",
+            "members": [
+              "Created",
+              "PlayerChallenged",
+              "Active",
+              "Finished"
+            ]
+          },
+          "t_bool": {
+            "label": "bool"
+          },
+          "t_enum(Outcome)5671": {
+            "label": "enum LensChess.Outcome",
+            "members": [
+              "Undecided",
+              "Draw",
+              "WhiteWins",
+              "BlackWins"
+            ]
+          },
+          "t_uint256": {
+            "label": "uint256"
+          },
+          "t_uint32": {
+            "label": "uint32"
+          },
+          "t_address": {
+            "label": "address"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)"
+          },
+          "t_uint8": {
+            "label": "uint8"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}

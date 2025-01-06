@@ -1,0 +1,82 @@
+version: "3.8" # Add version number
+
+services:
+  postgresql:
+    image: postgres:16
+    shm_size: 1g
+    restart: always
+    volumes:
+      - /root/postgres_data:/var/lib/postgresql/data:rw
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: rindexer
+
+  frontend:
+    image: frontend:0.0.1
+    restart: always
+    ports:
+      - 8000:80
+
+  # rindexer:
+  #   image: ghcr.io/joshstevens19/rindexer:sha-d1f1236b8ba7f765a1eb60892f53e27f7d481d06
+  #   working_dir: /rindexer
+  #   environment:
+  #     DATABASE_URL: postgresql://postgres:rindexer@postgresql:5432/postgres
+  #     POSTGRES_PASSWORD: rindexer
+  #   command:
+  #     - start
+  #     - all
+  #   volumes:
+  #     - /root/rindexer:/rindexer
+  #   ports:
+  #     - 3001:3001
+
+  # setup_postgres:
+  #   image: postgres:16
+  #   depends_on:
+  #     - postgresql
+  #     - rindexer
+  #   environment:
+  #     DATABASE_URL: postgresql://postgres:rindexer@postgresql:5432/postgres
+  #     POSTGRES_PASSWORD: rindexer
+  #   command: >
+  #     bash -c "
+  #     until curl -s -f http://rindexer:3001/graphql; do
+  #       echo 'Waiting for rindexer...';
+  #       sleep 5;
+  #     done;
+  #     psql $DATABASE_URL -c \"
+  #     CREATE OR REPLACE FUNCTION lenschessindexer_lens_chess.get_latest_game_events()
+  #     RETURNS SETOF lenschessindexer_lens_chess.game_event AS \$\$
+  #     BEGIN
+  #     RETURN QUERY
+  #     SELECT DISTINCT ON (game_id) *
+  #     FROM lenschessindexer_lens_chess.game_event
+  #     ORDER BY game_id, block_number DESC;
+  #     END;\$\$ LANGUAGE plpgsql STABLE;
+
+  #     CREATE TYPE lenschessindexer_lens_chess.elo_rating_with_placement AS (
+  #       player character(42),
+  #       rating character varying(78),
+  #       placement int
+  #     );
+
+  #     CREATE OR REPLACE FUNCTION lenschessindexer_lens_chess.get_latest_elo_ratings_with_placement()
+  #     RETURNS SETOF lenschessindexer_lens_chess.elo_rating_with_placement AS \$\$
+  #     BEGIN
+  #     RETURN QUERY
+  #     SELECT
+  #       player,
+  #       rating,
+  #       row_number() OVER (ORDER BY rating::numeric DESC)::int AS placement
+  #     FROM (
+  #       SELECT DISTINCT ON (player) player, rating
+  #       FROM lenschessindexer_lens_chess.elo_rating_event
+  #       ORDER BY player, block_number DESC
+  #     ) subquery
+  #     ORDER BY rating::numeric DESC;
+  #     END; \$\$
+  #     LANGUAGE plpgsql STABLE;
+  #     \"
+  #     "

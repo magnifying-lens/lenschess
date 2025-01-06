@@ -1,0 +1,41 @@
+name: lenschessindexer
+project_type: no-code
+networks:
+  - name: anvil
+    chain_id: 260
+    rpc: http://127.0.0.1:8011
+storage:
+  postgres:
+    enabled: true
+    drop_each_run: true
+    indexes:
+      contracts:
+        - name: LensChess
+          events:
+            - name: GameEvent
+              indexes:
+                - event_input_names:
+                    - gameId
+                - event_input_names:
+                    - state
+                - event_input_names:
+                    - player1
+                - event_input_names:
+                    - player2
+            - name: EloRatingEvent
+              indexes:
+                - event_input_names:
+                    - player
+                - event_input_names:
+                    - rating
+
+contracts:
+  - name: LensChess
+    details:
+      - network: anvil
+        address: 0x6B828bcb33305478cd7d27eB323F5C5B7b4aFdbe
+        start_block: 0
+    abi: ./abis/lenschess.abi.json
+    include_events:
+      - GameEvent
+      - EloRatingEvent

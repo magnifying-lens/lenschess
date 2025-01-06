@@ -1,0 +1,23 @@
+query GetGames(
+  $filter: GameCreatedFilter
+  $after: Cursor
+  $before: Cursor
+  $first: Int
+) {
+  allGameCreateds(
+    filter: $filter
+    after: $after
+    before: $before
+    first: $first
+  ) {
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    nodes {
+      gameId
+    }
+  }
+}

@@ -1,0 +1,565 @@
+schema {
+  query: Query
+}
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
+
+"""
+A filter to be used against BigFloat fields. All fields are combined with a logical ‘and.’
+"""
+input BigFloatFilter {
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: BigFloat
+  """Equal to the specified value."""
+  equalTo: BigFloat
+  """Greater than the specified value."""
+  greaterThan: BigFloat
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: BigFloat
+  """Included in the specified list."""
+  in: [BigFloat!]
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+  """Less than the specified value."""
+  lessThan: BigFloat
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: BigFloat
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: BigFloat
+  """Not equal to the specified value."""
+  notEqualTo: BigFloat
+  """Not included in the specified list."""
+  notIn: [BigFloat!]
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+type EloRatingEvent implements Node {
+  blockHash: String!
+  blockNumber: BigFloat!
+  contractAddress: String!
+  logIndex: String!
+  network: String!
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  player: String
+  rating: String
+  rindexerId: Int!
+  txHash: String!
+  txIndex: BigFloat!
+}
+
+"""
+A condition to be used against `EloRatingEvent` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input EloRatingEventCondition {
+  """Checks for equality with the object’s `blockHash` field."""
+  blockHash: String
+  """Checks for equality with the object’s `blockNumber` field."""
+  blockNumber: BigFloat
+  """Checks for equality with the object’s `contractAddress` field."""
+  contractAddress: String
+  """Checks for equality with the object’s `logIndex` field."""
+  logIndex: String
+  """Checks for equality with the object’s `network` field."""
+  network: String
+  """Checks for equality with the object’s `player` field."""
+  player: String
+  """Checks for equality with the object’s `rating` field."""
+  rating: String
+  """Checks for equality with the object’s `rindexerId` field."""
+  rindexerId: Int
+  """Checks for equality with the object’s `txHash` field."""
+  txHash: String
+  """Checks for equality with the object’s `txIndex` field."""
+  txIndex: BigFloat
+}
+
+"""
+A filter to be used against `EloRatingEvent` object types. All fields are combined with a logical ‘and.’
+"""
+input EloRatingEventFilter {
+  """Checks for all expressions in this list."""
+  and: [EloRatingEventFilter!]
+  """Filter by the object’s `blockHash` field."""
+  blockHash: StringFilter
+  """Filter by the object’s `blockNumber` field."""
+  blockNumber: BigFloatFilter
+  """Filter by the object’s `contractAddress` field."""
+  contractAddress: StringFilter
+  """Filter by the object’s `logIndex` field."""
+  logIndex: StringFilter
+  """Filter by the object’s `network` field."""
+  network: StringFilter
+  """Negates the expression."""
+  not: EloRatingEventFilter
+  """Checks for any expressions in this list."""
+  or: [EloRatingEventFilter!]
+  """Filter by the object’s `player` field."""
+  player: StringFilter
+  """Filter by the object’s `rating` field."""
+  rating: StringFilter
+  """Filter by the object’s `rindexerId` field."""
+  rindexerId: IntFilter
+  """Filter by the object’s `txHash` field."""
+  txHash: StringFilter
+  """Filter by the object’s `txIndex` field."""
+  txIndex: BigFloatFilter
+}
+
+"""A connection to a list of `EloRatingEvent` values."""
+type EloRatingEventsConnection {
+  """
+  A list of edges which contains the `EloRatingEvent` and cursor to aid in pagination.
+  """
+  edges: [EloRatingEventsEdge!]!
+  """A list of `EloRatingEvent` objects."""
+  nodes: [EloRatingEvent]!
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """The count of *all* `EloRatingEvent` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `EloRatingEvent` edge in the connection."""
+type EloRatingEventsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+  """The `EloRatingEvent` at the end of the edge."""
+  node: EloRatingEvent
+}
+
+"""Methods to use when ordering `EloRatingEvent`."""
+enum EloRatingEventsOrderBy {
+  BLOCK_HASH_ASC
+  BLOCK_HASH_DESC
+  BLOCK_NUMBER_ASC
+  BLOCK_NUMBER_DESC
+  CONTRACT_ADDRESS_ASC
+  CONTRACT_ADDRESS_DESC
+  LOG_INDEX_ASC
+  LOG_INDEX_DESC
+  NATURAL
+  NETWORK_ASC
+  NETWORK_DESC
+  PLAYER_ASC
+  PLAYER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  RATING_ASC
+  RATING_DESC
+  RINDEXER_ID_ASC
+  RINDEXER_ID_DESC
+  TX_HASH_ASC
+  TX_HASH_DESC
+  TX_INDEX_ASC
+  TX_INDEX_DESC
+}
+
+type EloRatingWithPlacement {
+  placement: Int
+  player: String
+  rating: String
+}
+
+"""
+A filter to be used against `EloRatingWithPlacement` object types. All fields are combined with a logical ‘and.’
+"""
+input EloRatingWithPlacementFilter {
+  """Checks for all expressions in this list."""
+  and: [EloRatingWithPlacementFilter!]
+  """Negates the expression."""
+  not: EloRatingWithPlacementFilter
+  """Checks for any expressions in this list."""
+  or: [EloRatingWithPlacementFilter!]
+  """Filter by the object’s `placement` field."""
+  placement: IntFilter
+  """Filter by the object’s `player` field."""
+  player: StringFilter
+  """Filter by the object’s `rating` field."""
+  rating: StringFilter
+}
+
+"""A connection to a list of `EloRatingWithPlacement` values."""
+type EloRatingWithPlacementsConnection {
+  """
+  A list of edges which contains the `EloRatingWithPlacement` and cursor to aid in pagination.
+  """
+  edges: [EloRatingWithPlacementsEdge!]!
+  """A list of `EloRatingWithPlacement` objects."""
+  nodes: [EloRatingWithPlacement]!
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """
+  The count of *all* `EloRatingWithPlacement` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+"""A `EloRatingWithPlacement` edge in the connection."""
+type EloRatingWithPlacementsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+  """The `EloRatingWithPlacement` at the end of the edge."""
+  node: EloRatingWithPlacement
+}
+
+type GameEvent implements Node {
+  blockHash: String!
+  blockNumber: BigFloat!
+  contractAddress: String!
+  gameId: String
+  logIndex: String!
+  network: String!
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  player1: String
+  player2: String
+  rindexerId: Int!
+  state: Int
+  txHash: String!
+  txIndex: BigFloat!
+}
+
+"""
+A condition to be used against `GameEvent` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input GameEventCondition {
+  """Checks for equality with the object’s `blockHash` field."""
+  blockHash: String
+  """Checks for equality with the object’s `blockNumber` field."""
+  blockNumber: BigFloat
+  """Checks for equality with the object’s `contractAddress` field."""
+  contractAddress: String
+  """Checks for equality with the object’s `gameId` field."""
+  gameId: String
+  """Checks for equality with the object’s `logIndex` field."""
+  logIndex: String
+  """Checks for equality with the object’s `network` field."""
+  network: String
+  """Checks for equality with the object’s `player1` field."""
+  player1: String
+  """Checks for equality with the object’s `player2` field."""
+  player2: String
+  """Checks for equality with the object’s `rindexerId` field."""
+  rindexerId: Int
+  """Checks for equality with the object’s `state` field."""
+  state: Int
+  """Checks for equality with the object’s `txHash` field."""
+  txHash: String
+  """Checks for equality with the object’s `txIndex` field."""
+  txIndex: BigFloat
+}
+
+"""
+A filter to be used against `GameEvent` object types. All fields are combined with a logical ‘and.’
+"""
+input GameEventFilter {
+  """Checks for all expressions in this list."""
+  and: [GameEventFilter!]
+  """Filter by the object’s `blockHash` field."""
+  blockHash: StringFilter
+  """Filter by the object’s `blockNumber` field."""
+  blockNumber: BigFloatFilter
+  """Filter by the object’s `contractAddress` field."""
+  contractAddress: StringFilter
+  """Filter by the object’s `gameId` field."""
+  gameId: StringFilter
+  """Filter by the object’s `logIndex` field."""
+  logIndex: StringFilter
+  """Filter by the object’s `network` field."""
+  network: StringFilter
+  """Negates the expression."""
+  not: GameEventFilter
+  """Checks for any expressions in this list."""
+  or: [GameEventFilter!]
+  """Filter by the object’s `player1` field."""
+  player1: StringFilter
+  """Filter by the object’s `player2` field."""
+  player2: StringFilter
+  """Filter by the object’s `rindexerId` field."""
+  rindexerId: IntFilter
+  """Filter by the object’s `state` field."""
+  state: IntFilter
+  """Filter by the object’s `txHash` field."""
+  txHash: StringFilter
+  """Filter by the object’s `txIndex` field."""
+  txIndex: BigFloatFilter
+}
+
+"""A connection to a list of `GameEvent` values."""
+type GameEventsConnection {
+  """
+  A list of edges which contains the `GameEvent` and cursor to aid in pagination.
+  """
+  edges: [GameEventsEdge!]!
+  """A list of `GameEvent` objects."""
+  nodes: [GameEvent]!
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """The count of *all* `GameEvent` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `GameEvent` edge in the connection."""
+type GameEventsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+  """The `GameEvent` at the end of the edge."""
+  node: GameEvent
+}
+
+"""Methods to use when ordering `GameEvent`."""
+enum GameEventsOrderBy {
+  BLOCK_HASH_ASC
+  BLOCK_HASH_DESC
+  BLOCK_NUMBER_ASC
+  BLOCK_NUMBER_DESC
+  CONTRACT_ADDRESS_ASC
+  CONTRACT_ADDRESS_DESC
+  GAME_ID_ASC
+  GAME_ID_DESC
+  LOG_INDEX_ASC
+  LOG_INDEX_DESC
+  NATURAL
+  NETWORK_ASC
+  NETWORK_DESC
+  PLAYER_1_ASC
+  PLAYER_1_DESC
+  PLAYER_2_ASC
+  PLAYER_2_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+  RINDEXER_ID_ASC
+  RINDEXER_ID_DESC
+  STATE_ASC
+  STATE_DESC
+  TX_HASH_ASC
+  TX_HASH_DESC
+  TX_INDEX_ASC
+  TX_INDEX_DESC
+}
+
+"""
+A filter to be used against Int fields. All fields are combined with a logical ‘and.’
+"""
+input IntFilter {
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: Int
+  """Equal to the specified value."""
+  equalTo: Int
+  """Greater than the specified value."""
+  greaterThan: Int
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: Int
+  """Included in the specified list."""
+  in: [Int!]
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+  """Less than the specified value."""
+  lessThan: Int
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: Int
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: Int
+  """Not equal to the specified value."""
+  notEqualTo: Int
+  """Not included in the specified list."""
+  notIn: [Int!]
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+}
+
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """Reads and enables pagination through a set of `EloRatingEvent`."""
+  allEloRatingEvents(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: EloRatingEventCondition
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: EloRatingEventFilter
+    """Only read the first `n` values of the set."""
+    first: Int
+    """Only read the last `n` values of the set."""
+    last: Int
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    """The method to use when ordering `EloRatingEvent`."""
+    orderBy: [EloRatingEventsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): EloRatingEventsConnection
+  """Reads and enables pagination through a set of `GameEvent`."""
+  allGameEvents(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GameEventCondition
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GameEventFilter
+    """Only read the first `n` values of the set."""
+    first: Int
+    """Only read the last `n` values of the set."""
+    last: Int
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+    """The method to use when ordering `GameEvent`."""
+    orderBy: [GameEventsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): GameEventsConnection
+  """Reads a single `EloRatingEvent` using its globally unique `ID`."""
+  eloRatingEvent(
+    """
+    The globally unique `ID` to be used in selecting a single `EloRatingEvent`.
+    """
+    nodeId: ID!
+  ): EloRatingEvent
+  eloRatingEventByRindexerId(rindexerId: Int!): EloRatingEvent
+  """Reads a single `GameEvent` using its globally unique `ID`."""
+  gameEvent(
+    """The globally unique `ID` to be used in selecting a single `GameEvent`."""
+    nodeId: ID!
+  ): GameEvent
+  gameEventByRindexerId(rindexerId: Int!): GameEvent
+  """
+  Reads and enables pagination through a set of `EloRatingWithPlacement`.
+  """
+  getLatestEloRatingsWithPlacement(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: EloRatingWithPlacementFilter
+    """Only read the first `n` values of the set."""
+    first: Int
+    """Only read the last `n` values of the set."""
+    last: Int
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): EloRatingWithPlacementsConnection
+  """Reads and enables pagination through a set of `GameEvent`."""
+  getLatestGameEvents(
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+    """
+    A filter to be used in determining which values should be returned by the collection.
+    """
+    filter: GameEventFilter
+    """Only read the first `n` values of the set."""
+    first: Int
+    """Only read the last `n` values of the set."""
+    last: Int
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+  ): GameEventsConnection
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+}
+
+"""
+A filter to be used against String fields. All fields are combined with a logical ‘and.’
+"""
+input StringFilter {
+  """
+  Not equal to the specified value, treating null like an ordinary value.
+  """
+  distinctFrom: String
+  """Equal to the specified value."""
+  equalTo: String
+  """Greater than the specified value."""
+  greaterThan: String
+  """Greater than or equal to the specified value."""
+  greaterThanOrEqualTo: String
+  """Included in the specified list."""
+  in: [String!]
+  """
+  Is null (if `true` is specified) or is not null (if `false` is specified).
+  """
+  isNull: Boolean
+  """Less than the specified value."""
+  lessThan: String
+  """Less than or equal to the specified value."""
+  lessThanOrEqualTo: String
+  """Equal to the specified value, treating null like an ordinary value."""
+  notDistinctFrom: String
+  """Not equal to the specified value."""
+  notEqualTo: String
+  """Not included in the specified list."""
+  notIn: [String!]
+}

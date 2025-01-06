@@ -1,0 +1,40 @@
+name: lenschessindexer
+project_type: no-code
+networks:
+  - name: lensTestnet
+    chain_id: 37111
+    rpc: https://rpc.testnet.lens.dev
+storage:
+  postgres:
+    enabled: true
+    indexes:
+      contracts:
+        - name: LensChess
+          events:
+            - name: GameEvent
+              indexes:
+                - event_input_names:
+                    - gameId
+                - event_input_names:
+                    - state
+                - event_input_names:
+                    - player1
+                - event_input_names:
+                    - player2
+            - name: EloRatingEvent
+              indexes:
+                - event_input_names:
+                    - player
+                - event_input_names:
+                    - rating
+
+contracts:
+  - name: LensChess
+    details:
+      - network: lensTestnet
+        address: 0xb85607F000D5Db94D8263a2Fc356676ed3213D05
+        start_block: 130157
+    abi: ./abis/lenschess.abi.json
+    include_events:
+      - GameEvent
+      - EloRatingEvent
