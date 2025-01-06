@@ -47,7 +47,7 @@ https://lenschess.xyz/
 
 ## Demo Video
 
-https://youtu.be/zXGETPVreWI
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/zXGETPVreWI/0.jpg)](https://www.youtube.com/watch?v=zXGETPVreWI)
 
 ## Technical Details
 
