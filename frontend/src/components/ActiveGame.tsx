@@ -1,4 +1,11 @@
-import { ListItem, Box, Typography, IconButton, Tooltip } from "@mui/material";
+import {
+  ListItem,
+  Box,
+  Typography,
+  IconButton,
+  Tooltip,
+  CircularProgress,
+} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import { useAccount } from "wagmi";
@@ -21,8 +28,9 @@ export default function ActiveGameElement({
   onShowGameDetails,
 }: Props) {
   const { address, isConnected } = useAccount();
-  const isUserGame =
-    isConnected && (address === game.player1 || address === game.player2);
+  const myGame =
+    address?.toLowerCase() === game.player1.toLowerCase() ||
+    address === game.player2.toLowerCase();
   const isSelected = game.id === selectedGameId;
 
   const onJoinSuccess = useCallback(
@@ -95,10 +103,14 @@ export default function ActiveGameElement({
           <IconButton onClick={handleInfoClick}>
             <InfoIcon />
           </IconButton>
-          {game.state === GameState.Created && !isUserGame && (
+          {game.state === GameState.Created && !myGame && (
             <Tooltip title="Join Game">
-              <IconButton onClick={handleJoinClick} disabled={joinGamePending}>
-                <GroupAddIcon />
+              <IconButton onClick={handleJoinClick} disabled={!isConnected}>
+                {joinGamePending ? (
+                  <CircularProgress size={20} />
+                ) : (
+                  <GroupAddIcon />
+                )}
               </IconButton>
             </Tooltip>
           )}
