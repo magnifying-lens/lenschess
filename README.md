@@ -1,4 +1,4 @@
-# LensChess - Lens Protocol Holiday Hackathon Entry
+# LensChess - Lens Network Holiday Hackathon Entry
 
 ## Project Details:
 
