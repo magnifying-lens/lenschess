@@ -12,6 +12,7 @@ import {
 import { Backdrop, CircularProgress } from "@mui/material";
 import { Game, GameState } from "./types";
 import { gameToFEN } from "./chess-util";
+import { defaultPieces } from "./pieces";
 
 type Props = {
   game?: Game;
@@ -140,6 +141,7 @@ export default function LensChessBoard({ game }: Props) {
         isDraggablePiece={isDraggablePice}
         onPromotionPieceSelect={onPromotionPieceSelect}
         boardOrientation={iAmPlayerWhite ? "white" : "black"}
+        customPieces={defaultPieces}
       />
       {game === undefined && (
         <Box
